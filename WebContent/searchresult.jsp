@@ -244,9 +244,9 @@
 											DB mysql = new DB();
 											String userName1 = mysql.returnLogin(request);
 											String author =request.getParameter("authorid");
-											ResultSet rs = mysql.selectauthor(request, userName1,author);
+											ResultSet rs = mysql.selectauthor444(request, userName1,author);
 											String fri1 = mysql.myFriendssearch(request,userName1,author);
-											ArrayList friends= (ArrayList)session.getAttribute("friends");
+											ArrayList friends= (ArrayList)session.getAttribute("friendsearch");
 											//System.out.println("1");
 											if(friends == null|| friends.size() == 0){
 											%>

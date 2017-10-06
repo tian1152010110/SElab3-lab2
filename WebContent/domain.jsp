@@ -248,7 +248,11 @@
 											String authorid = request.getParameter("Authorid");
 											String authornumber = request.getParameter("AuthorNumber");
 											String country = request.getParameter("Country");
+											if(country != null)
+												country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");
 											String authorname = request.getParameter("AuthorName");
+											if(authorname != null)
+												authorname = new String(request.getParameter("AuthorName").getBytes("ISO-8859-1"),"GB2312");
 											String age = request.getParameter("Age");
 											if(authorname !=null)
 												mysql.insertau(request,userName1,authorname,authornumber,authorid,age,country);
@@ -257,16 +261,16 @@
 											String ISBN=request.getParameter("ISBN");
 											//ResultSet rs = mysql.selectFri(request, userName1,name);
 											String fri1 = mysql.myresultsearch(request,userName1,ISBN);
-											ArrayList friends= (ArrayList)session.getAttribute("friends");
+											ArrayList friends90= (ArrayList)session.getAttribute("friends90");
 											//System.out.println("1");
-											if(friends == null|| friends.size() == 0){
+											if(friends90 == null|| friends90.size() == 0){
 											%>
 											<h1>书籍库中未有书籍</h1>
 											<%
 											}else{
-												for(int i=friends.size()-1;i>=0;i--)
+												for(int i=friends90.size()-1;i>=0;i--)
 												{
-													MyFriBean ff =(MyFriBean)friends.get(i);
+													MyFriBean ff =(MyFriBean)friends90.get(i);
 													par = ff.getauthor();
 											%>
 											

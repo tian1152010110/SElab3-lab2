@@ -2,10 +2,18 @@
 <%@page import="DBJavaBean.DB" %>
 <%@page import="java.sql.*" %>
 <%@page import= "java.util.ArrayList" %>
+
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
+<%@ page language="java" contentType="text/html; charset=gb2312"
+   pageEncoding="ISO-8859-1"%>
+
+<%@ page import="java.sql.*" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-us">
+
+
 	<head>
 		<meta charset="utf-8">
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
@@ -219,11 +227,11 @@
 											<!--  
 											<form action="lookFriends.jsp" method ="post">
 											<input type="text" name="friendname"/>
-											<input type="submit" value="查找"/>
+											<input type="submit" value="鏌ユ壘"/>
 											</form>
 											-->
 									<!-- widget content -->
-									<div class="widget-body no-padding">
+									<div class="widget-body no-padding" overflow="auto">
 
 										<table class="table table-bordered">
 											<thead>
@@ -248,7 +256,7 @@
 											if(ISBNnumupdate != null)
 											{
 												fri = mysql.deleteFri(request,userName,ISBNnumupdate);
-												System.out.println("1");
+												//System.out.println("1");
 											}
 											
 											String ISBNdelete = request.getParameter("ISBNdelete");
@@ -256,25 +264,35 @@
 												fri = mysql.deleteFri(request,userName,ISBNdelete);
 											
 											String newbookname=request.getParameter("newbookname");
+											if(newbookname != null)
+												newbookname =  new String(request.getParameter("newbookname").getBytes("ISO-8859-1"),"GB2312");
+											//String newbookname =  new String(request.getParameter("newbookname").getBytes("ISO-8859-1"),"GB2312");
+											//System.out.println(newbookname);
 											//newbookname=new String(newbookname.getBytes("iso-8859-1"),"GB18030");
 											String price = request.getParameter("price");
 											String date = request.getParameter("date");
 											String author =request.getParameter("author");
 											String publisher =request.getParameter("publisher");
+											if(publisher != null)
+												publisher = new String(request.getParameter("publisher").getBytes("ISO-8859-1"),"GB2312");
 											//publisher=new String(publisher.getBytes("iso-8859-1"),"GB18030");
 											String ISBN =request.getParameter("ISBNnum");
 											String Number =request.getParameter("idbookinformation");
 											//System.out.println(ISBN);
-											if(newbookname != null)
+											if(ISBN != null)
 												fri = mysql.insertFri(request, userName, newbookname, price, date, author, publisher,ISBN,Number);
 											
 											String newbookname1=request.getParameter("newbookname1");
+											if(newbookname1 != null)
+												newbookname1 =  new String(request.getParameter("newbookname1").getBytes("ISO-8859-1"),"GB2312");
 											//newbookname=new String(newbookname.getBytes("iso-8859-1"),"GB18030");
 											String price1 = request.getParameter("price1");
 											String date1 = request.getParameter("date1");
 											String author1 =request.getParameter("author1");
 											String publisher1 =request.getParameter("publisher1");
-											//publisher=new String(publisher.getBytes("iso-8859-1"),"GB18030");
+											if(publisher1 != null)
+												publisher1 = new String(request.getParameter("publisher1").getBytes("ISO-8859-1"),"GB2312");
+											//publisher1=new String(publisher1.getBytes("GB18030"),"utf-8");
 											String ISBN1 =request.getParameter("ISBNnumupdate");
 											String Number1 =request.getParameter("idbookinformation1");
 											//System.out.println(ISBN);
@@ -286,12 +304,12 @@
 											String userName1 = mysql.returnLogin(request);
 											
 											ResultSet rs = mysql.selectFriAll(request, userName1);
-											String fri1 = mysql.myFriends(request,userName1);
-											ArrayList friends= (ArrayList)session.getAttribute("friends");
+											String fri1 = mysql.myFriends345(request,userName1);
+											ArrayList friends= (ArrayList)session.getAttribute("friends345");
 											//System.out.println("1");
 											if(friends == null|| friends.size() == 0){
 											%>
-											<h1>书籍库中未有书籍</h1>
+											<h1>涔︾睄搴撲腑鏈湁涔︾睄</h1>
 											<%
 											}else{
 												for(int i=friends.size()-1;i>=0;i--)
@@ -301,7 +319,7 @@
 											%>
 											
 													<tr>
-											<!--  <th><%=ff.getName()%></th>  -->		
+											<!--  <th><%=ff.getNumber()%></th>  -->		
 													<th><%=ff.getISBN()%></th>
 													 <th><a href="domain.jsp?ISBN=<%=ff.getISBN()%>"><%=ff.getName()%></a></th> 
 													

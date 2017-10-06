@@ -1,6 +1,7 @@
 <%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
 <%@page import ="JavaBean.UserNameBean" %>
 <%@page import ="java.util.ArrayList" %>
+<!-- 1ÍøÒ³¹öÖá 2 ×Ö·û±àÂë 3 ÐÞ¸ÄÊÇµ÷ÕûÖ÷¼ü -->
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>

@@ -13,9 +13,9 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 public class DB implements ServletRequestAware{
 	private String driverName="com.mysql.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/bookmanagementsystem";//?useUnicode=true&characterEncoding=gbk
-	private String user ="root";
-	private String password="tjr19970907";
+	private String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_junruitianlab2";//?useUnicode=true&characterEncoding=gbk
+	private String user ="0wkx21253z";
+	private String password="k5kj3lh5w533kxz031il5542i1hmh42l2m0wixl5";
 	private Connection con = null;
 	private Statement st =null;
 	private ResultSet rs = null;
@@ -237,7 +237,18 @@ public class DB implements ServletRequestAware{
 	public ResultSet selectauthor(HttpServletRequest request,String userName,String authorid)	
 	{
 		try{
-			String sql = "select*from aythorinformation where Authorid='"+authorid+"'";
+			String sql = "select * from aythorinformation where Authorid='"+authorid+"'";
+			st = getStatement();
+			return st.executeQuery(sql);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public ResultSet selectauthor444(HttpServletRequest request,String userName,String authorid)	
+	{
+		try{
+			String sql = "select * from bookinformation where Authorid='"+authorid+"'";
 			st = getStatement();
 			return st.executeQuery(sql);
 		}catch(Exception e){
@@ -249,7 +260,7 @@ public class DB implements ServletRequestAware{
 	public ResultSet selectFri(HttpServletRequest request,String userName,String ISBN)	
 	{
 		try{
-			String sql = "select*from bookinformation where ISBN='"+ISBN+"'";
+			String sql = "select * from bookinformation where ISBN='"+ISBN+"'";
 			st = getStatement();
 			return st.executeQuery(sql);
 		}catch(Exception e){
@@ -314,7 +325,45 @@ public class DB implements ServletRequestAware{
 		}
 		
 	}
-	
+	public String myFriends345(HttpServletRequest request,String userName)
+	{
+		try{
+			ArrayList listName =null;
+			HttpSession session =request.getSession();
+			listName=new ArrayList();
+			rs=selectFriAll(request,userName);
+			if(rs.next())
+			{
+				rs=selectFriAll(request,userName);
+				while(rs.next())
+				{
+					MyFriBean mess = new MyFriBean();
+					mess.setNumber(rs.getString("idbookinformation"));
+					mess.setName(rs.getString("BookName"));
+					mess.setISBN(rs.getString("ISBN"));
+					mess.setpublisher(rs.getString("Publisher"));
+					mess.setauthor(rs.getString("Authorid"));
+					mess.setdate(rs.getString("Date"));
+					mess.setprice(rs.getString("Price"));
+					//
+					listName.add(mess);
+					//System.out.println("2");
+					session.setAttribute("friends345",listName);
+				}
+			}
+			else
+			{
+				session.setAttribute("friends345", listName);
+			}
+			return "ok";
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
 	
 	//获取所有作者作品并保存到session
 		public String myFriendssearch(HttpServletRequest request,String userName,String authorid)
@@ -323,10 +372,10 @@ public class DB implements ServletRequestAware{
 				ArrayList listName =null;
 				HttpSession session =request.getSession();
 				listName=new ArrayList();
-				rs=selectauthor(request,userName,authorid);
+				rs=selectauthor444(request,userName,authorid);
 				if(rs.next())
 				{
-					rs=selectauthor(request,userName,authorid);
+					rs=selectauthor444(request,userName,authorid);
 					while(rs.next())
 					{
 						MyFriBean mess = new MyFriBean();
@@ -339,12 +388,12 @@ public class DB implements ServletRequestAware{
 						//
 						listName.add(mess);
 						//System.out.println("2");
-						session.setAttribute("friends",listName);
+						session.setAttribute("friendsearch",listName);
 					}
 				}
 				else
 				{
-					session.setAttribute("friends", listName);
+					session.setAttribute("friendsearch", listName);
 				}
 				return "ok";
 				
@@ -369,6 +418,7 @@ public class DB implements ServletRequestAware{
 					while(rs.next())
 					{
 						MyFriBean mess = new MyFriBean();
+						mess.setNumber(rs.getString("idbookinformation"));
 						mess.setName(rs.getString("BookName"));
 						mess.setISBN(rs.getString("ISBN"));
 						mess.setpublisher(rs.getString("Publisher"));
@@ -378,12 +428,12 @@ public class DB implements ServletRequestAware{
 						//
 						listName.add(mess);
 						//System.out.println("2");
-						session.setAttribute("friends",listName);
+						session.setAttribute("friends90",listName);
 					}
 				}
 				else
 				{
-					session.setAttribute("friends", listName);
+					session.setAttribute("friends90", listName);
 				}
 				return "ok";
 				

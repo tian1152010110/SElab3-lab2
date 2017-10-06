@@ -249,9 +249,8 @@
 											<h1>不存在</h1>
 											<% 
 											}else{
-												for(int i=friends.size()-1;i>=0;i--)
-												{
-													MyFriBean ff =(MyFriBean)friends.get(i);
+												
+													MyFriBean ff =(MyFriBean)friends.get(friends.size()-1);
 													bookNumber = ff.getNumber();								
 													 bookname=ff.getName();	
 													authorid=ff.getauthor();
@@ -259,7 +258,7 @@
 													Date=ff.getdate();
 													Price=ff.getprice();
 													//System.out.println(bookname);
-												}
+												
 											}
 											//String Fri = mysql.updateFri(request,userName,bookname,Price,Date,authorid,publisher,ISBNupdate,bookNumber);
 													
@@ -267,7 +266,7 @@
 											//if(updatemess == null|| updatemess.size() == 0)
 											//{
 		%>
-											<h1>查不到此书</h1>
+											<h1>更新图书信息</h1>
 											<%
 											//}
 											//else

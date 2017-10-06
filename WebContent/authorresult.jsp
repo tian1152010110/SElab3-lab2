@@ -247,7 +247,11 @@
 											String authorid = request.getParameter("Authorid");
 											String authornumber = request.getParameter("AuthorNumber");
 											String country = request.getParameter("Country");
+											if(country != null)
+												country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");
 											String authorname = request.getParameter("AuthorName");
+											if(authorname != null)
+												authorname = new String(request.getParameter("AuthorName").getBytes("ISO-8859-1"),"GB2312");
 											String age = request.getParameter("Age");
 											if(authorname!=null)
 												mysql.insertau(request,userName1,authorname,authornumber,authorid,age,country);
