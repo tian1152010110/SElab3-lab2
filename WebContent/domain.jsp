@@ -4,7 +4,7 @@
 <%@page import="java.sql.*" %>
 <%@page import= "java.util.ArrayList" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
+<%@ page language ="java" contentType="text/html;charset=utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-us">
 	<head>
@@ -220,7 +220,7 @@
 											<!--  
 											<form action="lookFriends.jsp" method ="post">
 											<input type="text" name="friendname"/>
-											<input type="submit" value="²éÕÒ"/>
+											<input type="submit" value="æŸ¥æ‰¾"/>
 											</form>
 											-->
 									<!-- widget content -->
@@ -242,17 +242,17 @@
 											<%
 										
 											DB mysql = new DB();
-											String par = null;//ÏòÏÂ´«µÝ²ÎÊýauthorid
+											String par = null;//å‘ä¸‹ä¼ é€’å‚æ•°authorid
 											String userName1 = mysql.returnLogin(request);
 											
 											String authorid = request.getParameter("Authorid");
 											String authornumber = request.getParameter("AuthorNumber");
 											String country = request.getParameter("Country");
-											if(country != null)
-												country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");
+											//if(country != null)
+											//	country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");
 											String authorname = request.getParameter("AuthorName");
-											if(authorname != null)
-												authorname = new String(request.getParameter("AuthorName").getBytes("ISO-8859-1"),"GB2312");
+											//if(authorname != null)
+											//	authorname = new String(request.getParameter("AuthorName").getBytes("ISO-8859-1"),"GB2312");
 											String age = request.getParameter("Age");
 											if(authorname !=null)
 												mysql.insertau(request,userName1,authorname,authornumber,authorid,age,country);
@@ -265,7 +265,7 @@
 											//System.out.println("1");
 											if(friends90 == null|| friends90.size() == 0){
 											%>
-											<h1>Êé¼®¿âÖÐÎ´ÓÐÊé¼®</h1>
+											<h1>ä¹¦ç±åº“ä¸­æœªæœ‰ä¹¦ç±</h1>
 											<%
 											}else{
 												for(int i=friends90.size()-1;i>=0;i--)
@@ -285,8 +285,8 @@
 												</tr>
 												<td>
 												
-												<a href="update.jsp?ISBNupdate=<%=ISBN%>">ÐÞ¸Ä</a>
-												<a href="lookFriends.jsp?ISBNdelete=<%=ISBN%>">É¾³ý</a>
+												<a href="update.jsp?ISBNupdate=<%=ISBN%>">ä¿®æ”¹</a>
+												<a href="lookFriends.jsp?ISBNdelete=<%=ISBN%>">åˆ é™¤</a>
 												
 												</td>   
 											<%
@@ -314,8 +314,8 @@
 											//System.out.println("1");
 											if(message == null|| message.size() == 0){
 											%>
-											<h1>×÷ÕßÖÐÎ´³öÏÖ£¬ÇëÏÈÌí¼Ó</h1>
-											<a href="addnewauthor.jsp?ISBNnote=<%=ISBN%>">Ìí¼ÓÒ»¸öÐÂ×÷Õß</a>
+											<h1>ä½œè€…ä¸­æœªå‡ºçŽ°ï¼Œè¯·å…ˆæ·»åŠ </h1>
+											<a href="addnewauthor.jsp?ISBNnote=<%=ISBN%>">æ·»åŠ ä¸€ä¸ªæ–°ä½œè€…</a>
 											<%
 											}else{
 												for(int i=message.size()-1;i>=0;i--)

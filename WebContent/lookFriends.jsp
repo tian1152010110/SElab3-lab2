@@ -4,7 +4,7 @@
 <%@page import= "java.util.ArrayList" %>
 
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language="java" contentType="text/html; charset=gb2312"
+<%@ page language="java" contentType="text/html; charset=utf-8"
    pageEncoding="ISO-8859-1"%>
 
 <%@ page import="java.sql.*" %>
@@ -264,8 +264,8 @@
 												fri = mysql.deleteFri(request,userName,ISBNdelete);
 											
 											String newbookname=request.getParameter("newbookname");
-											if(newbookname != null)
-												newbookname =  new String(request.getParameter("newbookname").getBytes("ISO-8859-1"),"GB2312");
+											//if(newbookname != null)
+											//	newbookname =  new String(request.getParameter("newbookname").getBytes("ISO-8859-1"),"utf-8");
 											//String newbookname =  new String(request.getParameter("newbookname").getBytes("ISO-8859-1"),"GB2312");
 											//System.out.println(newbookname);
 											//newbookname=new String(newbookname.getBytes("iso-8859-1"),"GB18030");
@@ -273,8 +273,8 @@
 											String date = request.getParameter("date");
 											String author =request.getParameter("author");
 											String publisher =request.getParameter("publisher");
-											if(publisher != null)
-												publisher = new String(request.getParameter("publisher").getBytes("ISO-8859-1"),"GB2312");
+											//if(publisher != null)
+											//	publisher = new String(request.getParameter("publisher").getBytes("ISO-8859-1"),"GB2312");
 											//publisher=new String(publisher.getBytes("iso-8859-1"),"GB18030");
 											String ISBN =request.getParameter("ISBNnum");
 											String Number =request.getParameter("idbookinformation");
@@ -283,15 +283,15 @@
 												fri = mysql.insertFri(request, userName, newbookname, price, date, author, publisher,ISBN,Number);
 											
 											String newbookname1=request.getParameter("newbookname1");
-											if(newbookname1 != null)
-												newbookname1 =  new String(request.getParameter("newbookname1").getBytes("ISO-8859-1"),"GB2312");
+											//if(newbookname1 != null)
+											//	newbookname1 =  new String(request.getParameter("newbookname1").getBytes("ISO-8859-1"),"GB2312");
 											//newbookname=new String(newbookname.getBytes("iso-8859-1"),"GB18030");
 											String price1 = request.getParameter("price1");
 											String date1 = request.getParameter("date1");
 											String author1 =request.getParameter("author1");
 											String publisher1 =request.getParameter("publisher1");
-											if(publisher1 != null)
-												publisher1 = new String(request.getParameter("publisher1").getBytes("ISO-8859-1"),"GB2312");
+											//if(publisher1 != null)
+											//	publisher1 = new String(request.getParameter("publisher1").getBytes("ISO-8859-1"),"GB2312");
 											//publisher1=new String(publisher1.getBytes("GB18030"),"utf-8");
 											String ISBN1 =request.getParameter("ISBNnumupdate");
 											String Number1 =request.getParameter("idbookinformation1");

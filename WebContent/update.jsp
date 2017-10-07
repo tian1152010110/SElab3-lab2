@@ -1,7 +1,7 @@
 <%@page import="JavaBean.MyFriBean" %>
 <%@page import="DBJavaBean.DB" %>
 <%@page import="java.sql.*" %>
-<%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
+<%@ page language ="java" contentType="text/html;charset=utf-8" %>
 <%@ page import="java.sql.*,java.util.*,javax.servlet.*,javax.servlet.http.*,java.text.*,java.math.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -242,11 +242,11 @@
 											String publisher = null;
 											String bookNumber = null;
 											String fri1 = mysql.myresultsearch(request,userName,ISBNupdate);
-											ArrayList friends= (ArrayList)session.getAttribute("friends");
+											ArrayList friends= (ArrayList)session.getAttribute("friends90");
 											
 											if(friends == null|| friends.size() == 0){
 											%>
-											<h1>²»´æÔÚ</h1>
+											<h1>ä¸å­˜åœ¨</h1>
 											<% 
 											}else{
 												
@@ -266,7 +266,7 @@
 											//if(updatemess == null|| updatemess.size() == 0)
 											//{
 		%>
-											<h1>¸üÐÂÍ¼ÊéÐÅÏ¢</h1>
+											<h1>æ›´æ–°å›¾ä¹¦ä¿¡æ¯</h1>
 											<%
 											//}
 											//else

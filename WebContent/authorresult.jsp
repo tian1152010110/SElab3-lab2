@@ -4,7 +4,7 @@
 <%@page import="java.sql.*" %>
 <%@page import= "java.util.ArrayList" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-us">
 	<head>
@@ -212,7 +212,7 @@
 									<!-- widget edit box -->
 									<div class="jarviswidget-editbox">
 										<!-- This area used as dropdown edit box -->
-										<h1>Ìí¼Ó³É¹¦</h1>
+										<h1>æ·»åŠ æˆåŠŸ</h1>
 									</div>
 									<!-- end widget edit box -->
 
@@ -220,7 +220,7 @@
 											<!--  
 											<form action="lookFriends.jsp" method ="post">
 											<input type="text" name="friendname"/>
-											<input type="submit" value="²éÕÒ"/>
+											<input type="submit" value="æŸ¥æ‰¾"/>
 											</form>
 											-->
 									<!-- widget content -->
@@ -241,17 +241,17 @@
 											<%
 
 											DB mysql = new DB();
-											String par = null;//ÏòÏÂ´«µÝ²ÎÊýauthorid
+											String par = null;//å‘ä¸‹ä¼ é€’å‚æ•°authorid
 											String userName1 = mysql.returnLogin(request);
 											
 											String authorid = request.getParameter("Authorid");
 											String authornumber = request.getParameter("AuthorNumber");
 											String country = request.getParameter("Country");
-											if(country != null)
-												country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");
+											//if(country != null)
+											//	country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");
 											String authorname = request.getParameter("AuthorName");
-											if(authorname != null)
-												authorname = new String(request.getParameter("AuthorName").getBytes("ISO-8859-1"),"GB2312");
+											//if(authorname != null)
+											//	authorname = new String(request.getParameter("AuthorName").getBytes("ISO-8859-1"),"GB2312");
 											String age = request.getParameter("Age");
 											if(authorname!=null)
 												mysql.insertau(request,userName1,authorname,authornumber,authorid,age,country);
@@ -262,7 +262,7 @@
 											//System.out.println("1");
 											if(friends == null|| friends.size() == 0){
 											%>
-											<h1>×÷ÕßÐÅÏ¢</h1>
+											<h1>ä½œè€…ä¿¡æ¯</h1>
 											<%
 											}else{
 												for(int i=friends.size()-1;i>=0;i--)
