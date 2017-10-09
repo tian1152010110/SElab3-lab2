@@ -256,6 +256,69 @@ public class DB implements ServletRequestAware{
 			return null;
 		}
 	}
+	
+	public ResultSet selectauthorID(HttpServletRequest request,String userName,String authorname)	
+	{
+		try{
+			String sql = "select * from aythorinformation where AuthorName='"+authorname+"'";
+			st = getStatement();
+			return st.executeQuery(sql);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public String myFriendssearchID(HttpServletRequest request,String userName,String authorname)
+	{
+		try{
+			ArrayList listName =null;
+			HttpSession session =request.getSession();
+			listName=new ArrayList();
+			rs=selectauthorID(request,userName,authorname);
+			
+			if(rs.next())
+			{
+				rs=selectauthorID(request,userName,authorname);
+				while(rs.next())
+				{
+					MyDayBean mess = new MyDayBean();
+					
+					mess.setauthorid(rs.getString("Authorid"));
+					//System.out.println();
+					//
+					listName.add(mess);
+					//listName.add(rs.getString("Authorid"));
+					//System.out.println("2");
+					session.setAttribute("friendsearchID",listName);
+				}
+			}
+			else
+			{
+				session.setAttribute("friendsearchID", listName);
+			}
+			//System.out.println(listName);
+			return "ok";
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	public ResultSet selectauthor446(HttpServletRequest request,String userName,String authorid,String authorname)	
+	{
+		try{
+			String sql = "select * from bookinformation where Authorid='"+authorid+"'"+" and AuthorName='"+authorname+"'";
+			st = getStatement();
+			return st.executeQuery(sql);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	//≤È—Ø ÈºÆ
 	public ResultSet selectFri(HttpServletRequest request,String userName,String ISBN)	
 	{
@@ -325,6 +388,7 @@ public class DB implements ServletRequestAware{
 		}
 		
 	}
+	
 	public String myFriends345(HttpServletRequest request,String userName)
 	{
 		try{
@@ -394,6 +458,45 @@ public class DB implements ServletRequestAware{
 				else
 				{
 					session.setAttribute("friendsearch", listName);
+				}
+				return "ok";
+				
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+				return null;
+			}
+			
+		}
+		
+		public String myFriendssearch446(HttpServletRequest request,String userName,String authorid,String authorname)
+		{
+			try{
+				ArrayList listName =null;
+				HttpSession session =request.getSession();
+				listName=new ArrayList();
+				rs=selectauthor446(request,userName,authorid,authorname);
+				if(rs.next())
+				{
+					rs=selectauthor446(request,userName,authorid,authorname);
+					while(rs.next())
+					{
+						MyFriBean mess = new MyFriBean();
+						mess.setName(rs.getString("BookName"));
+						mess.setISBN(rs.getString("ISBN"));
+						mess.setpublisher(rs.getString("Publisher"));
+						mess.setauthor(rs.getString("Authorid"));
+						mess.setdate(rs.getString("Date"));
+						mess.setprice(rs.getString("Price"));
+						//
+						listName.add(mess);
+						//System.out.println("2");
+						session.setAttribute("friendsearch446",listName);
+					}
+				}
+				else
+				{
+					session.setAttribute("friendsearch446", listName);
 				}
 				return "ok";
 				

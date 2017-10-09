@@ -274,27 +274,29 @@
 											String author =request.getParameter("author");
 											String publisher =request.getParameter("publisher");
 											//if(publisher != null)
-											//	publisher = new String(request.getParameter("publisher").getBytes("ISO-8859-1"),"GB2312");
+											//	publisher = new String(request.getParameter("publisher").getBytes("ISO-8859-1"),"utf-8");
 											//publisher=new String(publisher.getBytes("iso-8859-1"),"GB18030");
 											String ISBN =request.getParameter("ISBNnum");
-											String Number =request.getParameter("idbookinformation");
+											//String Number =request.getParameter("idbookinformation");
+											String Number = ISBN;
 											//System.out.println(ISBN);
 											if(ISBN != null)
 												fri = mysql.insertFri(request, userName, newbookname, price, date, author, publisher,ISBN,Number);
 											
 											String newbookname1=request.getParameter("newbookname1");
 											//if(newbookname1 != null)
-											//	newbookname1 =  new String(request.getParameter("newbookname1").getBytes("ISO-8859-1"),"GB2312");
+											//	newbookname1 =  new String(request.getParameter("newbookname1").getBytes("ISO-8859-1"),"utf-8");
 											//newbookname=new String(newbookname.getBytes("iso-8859-1"),"GB18030");
 											String price1 = request.getParameter("price1");
 											String date1 = request.getParameter("date1");
 											String author1 =request.getParameter("author1");
 											String publisher1 =request.getParameter("publisher1");
 											//if(publisher1 != null)
-											//	publisher1 = new String(request.getParameter("publisher1").getBytes("ISO-8859-1"),"GB2312");
+											//	publisher1 = new String(request.getParameter("publisher1").getBytes("ISO-8859-1"),"utf-8");
 											//publisher1=new String(publisher1.getBytes("GB18030"),"utf-8");
 											String ISBN1 =request.getParameter("ISBNnumupdate");
-											String Number1 =request.getParameter("idbookinformation1");
+											//String Number1 =request.getParameter("idbookinformation1");
+											String Number1 = ISBN1;
 											//System.out.println(ISBN);
 											if(newbookname1 != null)
 												fri = mysql.insertFri(request, userName, newbookname1, price1, date1, author1, publisher1,ISBN1,Number1);

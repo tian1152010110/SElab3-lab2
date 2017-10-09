@@ -277,12 +277,12 @@
 											
 											%>
 											<fieldset>										
-											<!--  	<section>-->
+											<!--  	<section>
 													<label class="label">Book Number</label>
 													<label class="input">
-														<input type="text" name="idbookinformation1" value="<%=bookNumber%>" class="input-sm">
+														<input type="text" name="idbookinformation1" value="" class="input-sm">
 													</label>
-												<!--  	</section>-->		
+												 	</section>-->		
 											<!--  	<section>-->
 													<label class="label">Book ISBN(PK)</label>
 													<label class="input">

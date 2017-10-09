@@ -4,7 +4,8 @@
 <%@page import="java.sql.*" %>
 <%@page import= "java.util.ArrayList" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+   pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-us">
 	<head>
@@ -245,7 +246,8 @@
 											String userName1 = mysql.returnLogin(request);
 											
 											String authorid = request.getParameter("Authorid");
-											String authornumber = request.getParameter("AuthorNumber");
+											//String authornumber = request.getParameter("AuthorNumber");
+											String authornumber = authorid;
 											String country = request.getParameter("Country");
 											//if(country != null)
 											//	country = new String(request.getParameter("Country").getBytes("ISO-8859-1"),"GB2312");

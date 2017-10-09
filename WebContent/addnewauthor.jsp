@@ -240,12 +240,12 @@
 		%>
 											
 											<fieldset>										
-											<!--  	<section>-->
+											<!--  	<section>
 													<label class="label">New Author Number</label>
 													<label class="input">
 														<input type="text" name="AuthorNumber" value="" class="input-sm">
 													</label>
-												<!--  	</section>-->		
+												 	</section>-->		
 											<!--  	<section>-->
 													<label class="label">AuthorName</label>
 													<label class="input">

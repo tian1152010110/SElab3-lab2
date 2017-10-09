@@ -1,9 +1,11 @@
 <%@page import="JavaBean.MyFriBean" %>
+<%@page import="JavaBean.MyDayBean" %>
 <%@page import="DBJavaBean.DB" %>
 <%@page import="java.sql.*" %>
 <%@page import= "java.util.ArrayList" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+   pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-us">
 	<head>
@@ -173,7 +175,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Home</li><li>searchh with name</li><li>search result</li>
+					<li>Home</li><li>search with name</li><li>search result</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -219,7 +221,7 @@
 											<!--  
 											<form action="lookFriends.jsp" method ="post">
 											<input type="text" name="friendname"/>
-											<input type="submit" value="����"/>
+											<input type="submit" value="查找"/>
 											</form>
 											-->
 									<!-- widget content -->
@@ -244,33 +246,86 @@
 											DB mysql = new DB();
 											String userName1 = mysql.returnLogin(request);
 											String author =request.getParameter("authorid");
-											ResultSet rs = mysql.selectauthor444(request, userName1,author);
-											String fri1 = mysql.myFriendssearch(request,userName1,author);
-											ArrayList friends= (ArrayList)session.getAttribute("friendsearch");
-											//System.out.println("1");
-											if(friends == null|| friends.size() == 0){
-											%>
-											<h1>�鼮����δ���鼮</h1>
-											<%
-											}else{
-												for(int i=friends.size()-1;i>=0;i--)
-												{
-													MyFriBean ff =(MyFriBean)friends.get(i);
-												
-											%>
-											
-													<tr>
-													<!--  <th><%=ff.getName()%></th>-->
-													<th><%=ff.getISBN()%></th>
-													<th><%=ff.getName()%></th>
-													<th><%=ff.getauthor()%></th>
-													<th><%=ff.getpublisher()%></th>
-													<th><%=ff.getdate()%></th>
-													<th><%=ff.getprice()%></th>
-												</tr>
-											<%
+											String authorname = request.getParameter("authorname");
+											//if(authorname!= null)
+											//	authorname =  new String(request.getParameter("authorname").getBytes("ISO-8859-1"),"utf-8");
+											if(author == null || author.length() <= 0)
+											{
+												ResultSet rs1 = mysql.selectauthorID(request, userName1,authorname);
+												String fri11 = mysql.myFriendssearchID(request,userName1,authorname);
+												ArrayList IDS = (ArrayList)session.getAttribute("friendsearchID");
+												System.out.println(IDS.size());
+												if(IDS == null|| IDS.size() == 0){
+													%>
+													<h1>书籍库中未有书籍</h1>
+													<%
 												}
-											}
+												else{										
+													for(int i=IDS.size()-1;i>=0;i--)										
+													{
+														MyDayBean fa = (MyDayBean)IDS.get(i);
+														
+														ResultSet rs2 = mysql.selectauthor444(request, userName1,fa.getid());
+														String fri12 = mysql.myFriendssearch(request,userName1,fa.getid());
+														ArrayList friends= (ArrayList)session.getAttribute("friendsearch");
+														System.out.println(friends.size());
+														if(friends == null|| friends.size() == 0){
+														%>
+														<h1>书籍库中未有书籍</h1>
+														<%
+														}else{
+															for(int j=friends.size()-1;j>=0;j--)
+															{
+																MyFriBean ff =(MyFriBean)friends.get(j);
+																//System.out.println(ff.getName());
+														%>
+														
+																<tr>
+																<!--  <th><%=ff.getName()%></th>-->
+																<th><%=ff.getISBN()%></th>
+																<th><%=ff.getName()%></th>
+																<th><%=ff.getauthor()%></th>
+																<th><%=ff.getpublisher()%></th>
+																<th><%=ff.getdate()%></th>
+																<th><%=ff.getprice()%></th>
+															</tr>
+														<%
+															}
+														}
+													}
+												}
+											}	
+												else
+												{
+													ResultSet rs2 = mysql.selectauthor444(request, userName1,author);
+													String fri12 = mysql.myFriendssearch(request,userName1,author);
+													ArrayList friends= (ArrayList)session.getAttribute("friendsearch");
+													
+													if(friends == null|| friends.size() == 0){
+													%>
+													<h1>书籍库中未有书籍</h1>
+													<%
+													}else{
+														for(int j=friends.size()-1;j>=0;j--)
+														{
+															MyFriBean ff =(MyFriBean)friends.get(j);
+															//System.out.println(ff.getName());
+													%>
+													
+															<tr>
+															<!--  <th><%=ff.getName()%></th>-->
+															<th><%=ff.getISBN()%></th>
+															<th><%=ff.getName()%></th>
+															<th><%=ff.getauthor()%></th>
+															<th><%=ff.getpublisher()%></th>
+															<th><%=ff.getdate()%></th>
+															<th><%=ff.getprice()%></th>
+														</tr>
+													<%
+														}
+													}
+												}
+											
 											%>
 											
 											</tbody>
